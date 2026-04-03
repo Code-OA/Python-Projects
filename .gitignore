@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
 *.json
+*.db
+*.sqlite
 config.py
 notes.json
