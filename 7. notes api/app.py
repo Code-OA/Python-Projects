@@ -11,11 +11,14 @@ def get_notes():
 @app.route("/notes" , methods=["POST"])
 def write_note():
     note = request.get_json()
-    notes = load_json()
-    note['id'] = len(notes)+1
-    notes.append(note)
-    write_json(notes)
-    return jsonify(note) , 201
+    if note :
+        notes = load_json()
+        note['id'] = len(notes)+1
+        notes.append(note)
+        write_json(notes)
+        return jsonify(note) , 201
+    
+    return jsonify({"error" : "something went wrong!"}) , 400
 
 @app.route("/notes/<int:id>" , methods=["DELETE"])
 def delete_note(id):
